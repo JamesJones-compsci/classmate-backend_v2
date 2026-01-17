@@ -1,1 +1,8 @@
-rootProject.name = 'classmate-backend_winter_break25'
+rootProject.name = 'classmate-backend_v2'
+
+include 'user-service'
+include 'course-service'
+include 'grade-service'
+include 'task-service'
+include 'reminder-service'
+include 'api-gateway'

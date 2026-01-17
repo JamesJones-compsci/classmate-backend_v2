@@ -1,7 +1,7 @@
 plugins {
+	id 'org.springframework.boot' version '3.5.3' // upgrade from 3.3.5
+	id 'io.spring.dependency-management' version '1.1.7'
 	id 'java'
-	id 'org.springframework.boot' version '3.2.5'
-	id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'ca.gbc.comp3095'
