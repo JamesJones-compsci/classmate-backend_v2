@@ -15,6 +15,7 @@ public class SecurityConfig {
 
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .cors(cors -> {})
                 .authorizeExchange(exchange -> exchange
                         .anyExchange().permitAll()
                 )
