@@ -46,6 +46,28 @@ services:
       - classmate-network
 
   # ===============================
+  # User Service
+  # ===============================
+  user-service:
+    build:
+      context: ./user-service
+    image: classmate_app-integrated-user-service
+    container_name: user-service
+    depends_on:
+        - postgres
+    environment:
+        SPRING_PROFILES_ACTIVE: docker
+        SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/classmate
+        SPRING_DATASOURCE_USERNAME: ${POSTGRES_USERNAME}
+        SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+        JWT_SECRET: ${JWT_SECRET}
+    ports:
+        - "8088:8089"
+    restart: unless-stopped
+    networks:
+        - classmate-network
+
+  # ===============================
   # Course Service
   # ===============================
   course-service:
@@ -130,12 +152,14 @@ services:
     image: classmate_app-integrated-api-gateway
     container_name: api-gateway
     depends_on:
+      - user-service
       - course-service
       - grade-service
       - task-service
       - reminder-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      JWT_SECRET: ${JWT_SECRET}
     ports:
       - "8091:8080"
     restart: unless-stopped

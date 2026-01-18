@@ -76,6 +76,23 @@ public class ApiGatewayApplication {
 								"/v3/api-docs"))
 						.uri("http://reminder-service:8082"))
 
+				// ===============================
+				// User Service (Auth)
+				// ===============================
+				// Route /api/v1/register/** to user-service
+				// Route /api/v1/login/** to user-service
+				.route("user-service", r -> r
+						.path("/api/v1/auth/**")
+						.uri("http://user-service:8089"))
+
+				// User Service Swagger
+				.route("user-service-swagger", r -> r
+						.path("/user-service/v3/api-docs")
+						.filters(f -> f.rewritePath(
+								"/user-service/v3/api-docs",
+								"/v3/api-docs"))
+						.uri("http://user-service:8089"))
+
 				.build();
 	}
 }
