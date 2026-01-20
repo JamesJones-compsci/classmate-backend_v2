@@ -16,7 +16,11 @@ public class SecurityConfig {
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .cors(cors -> {})
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/api/auth/**").permitAll()  // public endpoints
+                        .pathMatchers("/api/auth/**",
+                                "/actuator/**",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**"
+                                ).permitAll()  // public endpoints
                         .anyExchange().authenticated()            // all others require JWT
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt())  // Keycloak JWT validation

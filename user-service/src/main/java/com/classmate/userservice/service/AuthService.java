@@ -31,7 +31,7 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(request.password()));
         userRepository.save(user);
 
-        return new AuthResponseDTO("JWT_DISABLED");
+        return new AuthResponseDTO(null);
     }
 
     public AuthResponseDTO login(LoginRequestDTO request) {
@@ -43,6 +43,6 @@ public class AuthService {
             throw new RuntimeException("invalid credentials");
         }
 
-        return new AuthResponseDTO("JWT_DISABLED");
+        return new AuthResponseDTO(null);
     }
 }
