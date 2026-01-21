@@ -19,7 +19,8 @@ public class SecurityConfig {
                         .pathMatchers("/api/auth/**",
                                 "/actuator/**",
                                 "/swagger-ui/**",
-                                "/v3/api-docs/**"
+                                "/v3/api-docs/**",
+                                "/api/v1/courses/health"
                                 ).permitAll()  // public endpoints
                         .anyExchange().authenticated()            // all others require JWT
                 )

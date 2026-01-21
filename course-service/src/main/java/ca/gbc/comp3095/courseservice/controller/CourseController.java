@@ -34,6 +34,11 @@ public class CourseController {
         return ResponseEntity.ok(courseService.getAllCourses());
     }
 
+    @GetMapping("/health")
+    public ResponseEntity<String> health() {
+        return ResponseEntity.ok("UP");
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<CourseResponseDTO> getCourseById(@PathVariable Long id){
         return ResponseEntity.ok(courseService.getCourseById(id));
